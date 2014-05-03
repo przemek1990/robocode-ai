@@ -12,7 +12,7 @@ Create battle
 -------------- 
 - Open Robocode
 - Robot -> Import robot or team
-- Choose jar for {project-dir}\target
+- Choose jar from {project-dir}\target
 - To create new battle: Battle -> New
 
 Frameworks:
