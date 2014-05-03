@@ -1,10 +1,10 @@
-package robocode.ai;
+package robocode.ml;
 
 
 import robocode.Robot;
 import robocode.ScannedRobotEvent;
 
-public class AIRobot extends Robot {
+public class MachineLearningRobot extends Robot {
 	public void run() {
 		while (true) {
 			ahead(100);
