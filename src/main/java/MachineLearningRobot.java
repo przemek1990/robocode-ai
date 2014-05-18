@@ -1,6 +1,3 @@
-package robocode.ml;
-
-
 import robocode.Robot;
 import robocode.ScannedRobotEvent;
 

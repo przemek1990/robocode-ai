@@ -5,15 +5,13 @@ Installation
 --------------
 - mvn install:install-file -Dfile={project-dir}\libs\robocode.jar -DgroupId=robocode -DartifactId=robocode -Dversion=1.0 Dpackaging=jar
 - mvn clean install
-- java -jar {project-dir}\plarfrom robocode-1.9.2.0.jar
+- java -jar {project-dir}\plarfrom robocode.jar
+
 
 
 Create battle 
 -------------- 
-- Open Robocode
-- Robot -> Import robot or team
-- Choose jar from {project-dir}\target
-- To create new battle: Battle -> New
+http://robowiki.net/wiki/Robocode/Add_a_Robot_Projects
 
 Frameworks:
 -------------- 
