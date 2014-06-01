@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule-execution-set>
+	<name>RobotBehaviour1</name>
+	<description>Rule Execution Set</description>
+
+	<synonymn name="robot" class="robots.Szoszor" />
+	<synonymn name="scannedRobotEvent" class="robocode.ScannedRobotEvent" />
+	<synonymn name="hitRobotEvent" class="robocode.HitRobotEvent" />
+	<synonymn name="hitByBullet" class="robocode.HitByBulletEvent" />
+
+  	<rule name="Rule1" description="" >
+		<if leftTerm="robot.getEvent" op="=" rightTerm="none" />
+		<if leftTerm="robot.getLastEvent" op="=" rightTerm="onBulletHit" />	
+		<then method="robot.setLastEvent" arg1 = "none"/>
+   	</rule>
+  	
+  	<rule name="Rule0" description="" >
+		<if leftTerm="robot.getEvent" op="=" rightTerm="none" />	
+		<then method="robot.turnLeft" arg1="180" />
+   	</rule>
+   	
+   	<rule name="Rule2" description="" >
+		<if leftTerm="robot.getEvent" op="=" rightTerm="onScannedRobot" />	
+		<then method="robot.fire" arg1="robot.getPower" />
+		<then method="robot.turnRight" arg1="scannedRobotEvent.getBearing" />
+		<then method="robot.ahead" arg1="scannedRobotEvent.getDistance" />
+		<then method="robot.fire" arg1="robot.getPower" />	
+		<then method="robot.scan" />
+   	</rule>
+   	
+   	<rule name="Rule2" description="" >
+		<if leftTerm="robot.getEvent" op="=" rightTerm="onHitRobot" />
+		<if leftTerm="robot.getEnergy" op="&gt;=" rightTerm="25" />	
+		<then method="robot.turnRight" arg1="hitRobotEvent.getBearing" />
+		<then method="robot.incPower" arg1="2" />
+		<then method="robot.fire" arg1="robot.getPower" />
+		<then method="robot.decPower" arg1="2" />	
+		<then method="robot.scan" />
+   	</rule>
+   	
+   	<rule name="Rule3" description="" >
+		<if leftTerm="robot.getEvent" op="=" rightTerm="onHitRobot" />
+		<if leftTerm="robot.getEnergy" op="&lt;" rightTerm="25" />		
+		<then method="robot.turnRight" arg1="hitRobotEvent.getBearing" />
+		<then method="robot.fire" arg1="robot.getPower" />
+		<then method="robot.scan" />
+   	</rule>
+   	
+   	<rule name="Rule4" description="" >
+		<if leftTerm="robot.getEvent" op="=" rightTerm="onHitByBullet" />
+		<if leftTerm="robot.getEnergy" op="&lt;" rightTerm="25" />	
+		<then method="robot.back" arg1="40" />
+	</rule>
+	
+	<rule name="Rule5" description="" >
+		<if leftTerm="robot.getEvent" op="=" rightTerm="onHitWall" />	
+		<then method="robot.back" arg1="20" />
+	</rule>
+	
+	<rule name="Rule6" description="" >
+		<if leftTerm="robot.getEvent" op="=" rightTerm="onBulletHit" />	
+		<then method="robot.incPower" arg1="1" />
+		<then method="robot.scan" />
+	</rule>
+	
+	<rule name="Rule7" description="" >
+		<if leftTerm="robot.getEvent" op="=" rightTerm="onBulletMissed" />	
+		<then method="robot.setPower" arg1="1" />
+		<then method="robot.scan" />
+	</rule>
+</rule-execution-set>
