@@ -66,8 +66,8 @@ public class Szoszor extends AdvancedRobot{
 		this.bulletPower = bulletPower;
 	}
 
-	public Event getEvent() {
-		return event;
+	public String getEvent() {
+		return event.name();
 	}
 
 	public void increasePower(int n) {
@@ -83,11 +83,11 @@ public class Szoszor extends AdvancedRobot{
 		this.event = Event.NONE;
 	}
 
-	public Event getLastEvent() {
-		return lastEvent;
+	public String getLastEvent() {
+		return lastEvent.name();
 	}
 
-	public void setLastEvent(Event lastEvent) {
-		this.lastEvent = lastEvent;
+	public void setLastEvent(String lastEvent) {
+		this.lastEvent = Event.valueOf(lastEvent);
 	}
 }
