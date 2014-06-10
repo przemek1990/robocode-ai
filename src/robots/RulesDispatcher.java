@@ -1,4 +1,4 @@
-package rule;
+package robots;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -17,11 +17,11 @@ import javax.rules.admin.RuleExecutionSet;
 
 import org.jruleengine.RuleServiceProviderImpl;
 
-public class RulesProcessor {
+public class RulesDispatcher {
 	
 	private StatelessRuleSession statelessRuleSession = createRuleSession();
 
-	public List process(Object... inputObjects) {
+	public List handelEvent(Object... inputObjects) {
 			try {
 				return statelessRuleSession.executeRules(Arrays.asList(inputObjects));
 			} catch (InvalidRuleSessionException | RemoteException e) {
