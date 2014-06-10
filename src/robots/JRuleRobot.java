@@ -1,5 +1,6 @@
 package robots;
 
+
 import robocode.*;
 
 public class JRuleRobot extends Robot{
@@ -9,15 +10,17 @@ public class JRuleRobot extends Robot{
 		ON_BULLET_MISSED,ON_BULLET_HIT_BULLET,NONE
 	}
 	 
+	private static final int DEFAULT_BULLET_POWER = 1;
     private RobotsEvent event = RobotsEvent.NONE;
     private RobotsEvent lastEvent = RobotsEvent.NONE;
-    private int bulletPower = 1;
+    private int bulletPower = DEFAULT_BULLET_POWER;
     private RulesDispatcher dispatcher = new RulesDispatcher();
 
     @Override
 	public void run() {
-		while (true)
-			dispatcher.handelEvent(this);
+		while (true){
+			dispatcher.handelEvent(this);	
+		}
 	}
 
     @Override

@@ -1,6 +1,5 @@
 package robots;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.rmi.RemoteException;
 import java.util.Arrays;
@@ -30,7 +29,7 @@ public class RulesDispatcher {
 	}
 
 	private StatelessRuleSession createRuleSession()  {
-		try(InputStream fileInputStream = new FileInputStream("C:\\projekty\\robocode-ai\\bin\\robots\\behaviour2.xml");){
+		try(InputStream fileInputStream  = this.getClass().getClassLoader().getResourceAsStream("robots/rules.xml")){
 			Class.forName(RuleServiceProviderImpl.class.getName());
 			RuleServiceProvider ruleServiceProvider = RuleServiceProviderManager.getRuleServiceProvider("org.jruleengine");
 			RuleAdministrator ruleAdministrator = ruleServiceProvider.getRuleAdministrator();		
