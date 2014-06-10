@@ -3,7 +3,7 @@
     <name>RobotBehaviour1</name>
     <description>Rule Execution Set</description>
 
-    <synonymn name="robot" class="robots.Szoszor" />
+    <synonymn name="robot" class="robots.JRuleRobot" />
     <synonymn name="scannedRobotEvent" class="robocode.ScannedRobotEvent" />
     <synonymn name="hitRobotEvent" class="robocode.HitRobotEvent" />
     <synonymn name="hitByBullet" class="robocode.HitByBulletEvent" />

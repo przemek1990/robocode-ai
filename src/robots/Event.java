@@ -9,5 +9,4 @@ public enum Event {
 	ON_BULLET_MISSED,
     ON_BULLET_HIT_BULLET,
     NONE
-
 }
