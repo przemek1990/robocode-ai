@@ -1,63 +1,62 @@
 package robots;
 
 import robocode.*;
-import rule.RulesProcessor;
 
-public class JRuleRobot extends Robot{
-
-    private Event event = Event.NONE;
-    private Event lastEvent = Event.NONE;
+public class JRuleRobot extends AdvancedRobot{
+	 
+	enum RobotsEvent {
+		ON_SCANNED_ROBOT, ON_HIT_ROBOT,ON_HIT_BY_BULLET,ON_HIT_WALL,ON_BULLET_HIT,
+		ON_BULLET_MISSED,ON_BULLET_HIT_BULLET,NONE
+	}
+	 
+    private RobotsEvent event = RobotsEvent.NONE;
+    private RobotsEvent lastEvent = RobotsEvent.NONE;
     private int bulletPower = 1;
-    private RulesProcessor processor = new RulesProcessor();
+    private RulesDispatcher dispatcher = new RulesDispatcher();
 
     @Override
 	public void run() {
 		while (true)
-			processor.process(this);
+			dispatcher.handelEvent(this);
 	}
 
     @Override
 	public void onScannedRobot(ScannedRobotEvent e) {
-		this.event = Event.ON_SCANNED_ROBOT;
-		processor.process(this, e);
-		reset(Event.ON_SCANNED_ROBOT);
+		processEvent(RobotsEvent.ON_SCANNED_ROBOT,e);
 	}
 
 	@Override
 	public void onHitRobot(HitRobotEvent e) {
-		this.event = Event.ON_HIT_ROBOT;
-		processor.process(this, e);
-		reset(Event.ON_HIT_ROBOT);
+		processEvent(RobotsEvent.ON_HIT_ROBOT,e);
 	}
 
     @Override
 	public void onHitByBullet(HitByBulletEvent e) {
-		this.event = Event.ON_HIT_BY_BULLET;
-		processor.process(this, e);
-		reset(Event.ON_HIT_BY_BULLET);
+		processEvent(RobotsEvent.ON_HIT_BY_BULLET,e);
 	}
 
     @Override
 	public void onHitWall(HitWallEvent e) {
-		this.event = Event.ON_HIT_WALL;
-		processor.process(this, e);
-		reset(Event.ON_HIT_WALL);
-
+		processEvent(RobotsEvent.ON_HIT_WALL,e);
 	}
 
 	@Override
 	public void onBulletHit(BulletHitEvent e) {
-		this.event = Event.ON_BULLET_HIT;
-		processor.process(this, e);
+		this.event = RobotsEvent.ON_BULLET_HIT;
+		dispatcher.handelEvent(this, e);
 	}
 
 	@Override
 	public void onBulletMissed(BulletMissedEvent e) {
-		this.event = Event.ON_BULLET_MISSED;
-		processor.process(this, e);
-		reset(Event.ON_BULLET_MISSED);
+		processEvent(RobotsEvent.ON_BULLET_MISSED,e);
 	}
 
+	private void processEvent(RobotsEvent e,robocode.Event robocodeEvent){
+		this.event = e;
+		dispatcher.handelEvent(this,robocodeEvent);
+		reset(e);
+	}
+	
 	public int getBulletPower() {
 		return bulletPower;
 	}
@@ -78,9 +77,9 @@ public class JRuleRobot extends Robot{
 		bulletPower -= n;
 	}
 	
-	public void reset(Event lastEvent) {
+	public void reset(RobotsEvent lastEvent) {
 		this.lastEvent = lastEvent;
-		this.event = Event.NONE;
+		this.event = RobotsEvent.NONE;
 	}
 
 	public String getLastEvent() {
@@ -88,6 +87,6 @@ public class JRuleRobot extends Robot{
 	}
 
 	public void setLastEvent(String lastEvent) {
-		this.lastEvent = Event.valueOf(lastEvent);
+		this.lastEvent = RobotsEvent.valueOf(lastEvent);
 	}
 }
