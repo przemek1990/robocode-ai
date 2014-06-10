@@ -3,7 +3,7 @@ package robots;
 import robocode.*;
 import rule.RulesProcessor;
 
-public class JRuleRobot extends AdvancedRobot{
+public class JRuleRobot extends Robot{
 
     private Event event = Event.NONE;
     private Event lastEvent = Event.NONE;
