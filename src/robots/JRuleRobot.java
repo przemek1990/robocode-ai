@@ -2,7 +2,7 @@ package robots;
 
 import robocode.*;
 
-public class JRuleRobot extends AdvancedRobot{
+public class JRuleRobot extends Robot{
 	 
 	enum RobotsEvent {
 		ON_SCANNED_ROBOT, ON_HIT_ROBOT,ON_HIT_BY_BULLET,ON_HIT_WALL,ON_BULLET_HIT,
